@@ -50,27 +50,42 @@ return candidateAnswers;
 }
 
 function gradeQuiz(candidateAnswers) {
-
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-let scorePer = (score / (questions.length)) * 100;
-if (scorePer >= 80) {
-  grade = "PASSED";
-  console.log(`>>> Overall Grade: ${scorePer} % ${score} of ${questions.length} responses correct <<<\n>>> Status: ${grade} <<<`);
-} else {
-  grade = "FAILED";
-  console.log(`>>> Overall Grade: ${scorePer} % ${score} of ${questions.length} responses correct <<<\n>>> Status: ${grade} <<<`);
+// TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
+let scored = 0;
+  for (i = 0; i < questions.length; i++) {
+  console.log(`Your Answer: ${candidateAnswers[i]}\nCorrect Answer: ${correctAnswers[i]}`);
+  if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+    scored += 1;
+  }
 }
 
  //TODO 3.2 use this variable to calculate the candidates score.
-
-
+let grade = (scored / (questions.length)) * 100;
+if (grade === 100) {  
+    console.log(`>>> Overall Grade: ${grade}% ${score} of ${questions.length} responses correct <<<`);
+  } else if (grade === 80) {
+    grade = 80;
+    console.log(`>>> Overall Grade: ${grade}% ${score} of ${questions.length} responses correct <<<`);
+  } else if (grade === 60) {
+    grade = 60;
+    console.log(`>>> Overall Grade: ${grade}% ${score} of ${questions.length} responses correct <<<`);
+   } else if (grade === 40){
+    grade = 40;
+    console.log(`>>> Overall Grade: ${grade}% ${score} of ${questions.length} responses correct <<<`);
+   } else if (grade === 20){
+    grade = 20;
+    console.log(`>>> Overall Grade: ${grade}% ${score} of ${questions.length} responses correct <<<`);
+   } else if (grade === 0){
+    grade = 0;
+    console.log(`>>> Overall Grade: ${grade}% ${score} of ${questions.length} responses correct <<<`);
+};
   return grade;
 };
 
 function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
-   console.log('Hello!' + candidateName + 'Here is a short quiz for you.');
+   console.log('Hello! ' + candidateName + 'Here is a short quiz for you.');
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
